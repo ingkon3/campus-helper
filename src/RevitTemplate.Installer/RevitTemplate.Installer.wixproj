@@ -1,0 +1,48 @@
+<Project>
+  <Import Project="Sdk.props" Sdk="WixToolset.Sdk" Version="5.0.0" />
+  <PropertyGroup>
+    <OutputName>Rembox Application Name</OutputName>
+    <ApplicationIcon>Assets/rembox-icon-white.ico</ApplicationIcon>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Installer</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DefineConstants>Debug</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Installer|x64' ">
+    <OutputPath>$(SolutionDir)\bin\Installer\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="Assets\banner-large.jpg" />
+    <Resource Include="Assets\banner-small.jpg" />
+    <Resource Include="Assets\rembox-icon-white.ico" />
+    <Content Include="GlobalVariables.wxi" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RevitTemplate.Main\RevitTemplate.Main.csproj">
+      <Name>RevitTemplate.Main</Name>
+      <Project>{286410b8-6185-4dfe-aeec-8680398938ca}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Util.wixext" Version="5.0.0" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="5.0.0" />
+    <PackageReference Include="WixToolset.Heat" Version="5.0.0" />
+  </ItemGroup>
+  <PropertyGroup>
+    <DefineConstants>ExecutablesPath2020=..\..\bin\Release2020\net48;ExecutablesPath2021=..\..\bin\Release2021\net48;ExecutablesPath2022=..\..\bin\Release2021\net48;ExecutablesPath2023=..\..\bin\Release2023\net48;ExecutablesPath2024=..\..\bin\Release2024\net48;ExecutablesPath2025=..\..\bin\Release2025\net8.0-windows; OutputName=$(OutputName); Version=$(Version)</DefineConstants>
+  </PropertyGroup>
+  <Import Project="Sdk.targets" Sdk="WixToolset.Sdk" Version="5.0.0" />
+  <Target Name="BeforeBuild" Condition=" '$(Configuration)|$(Platform)' == 'Installer|x86' ">
+    <HeatDirectory OutputFile="$(ProjectDir)\Executables2020.wxs" Directory="..\..\bin\Release2020\net48" ComponentGroupName="ExecutablesGroup2020" DirectoryRefId="RevitAddinFolder2020" GenerateGuidsNow="true" PreprocessorVariable="var.ExecutablesPath2020" SuppressRegistry="true" SuppressFragments="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" AutogenerateGuids="true" />
+    <HeatDirectory OutputFile="$(ProjectDir)\Executables2021.wxs" Directory="..\..\bin\Release2021\net48" ComponentGroupName="ExecutablesGroup2021" DirectoryRefId="RevitAddinFolder2021" GenerateGuidsNow="true" PreprocessorVariable="var.ExecutablesPath2021" SuppressRegistry="true" SuppressFragments="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" AutogenerateGuids="true" />
+    <HeatDirectory OutputFile="$(ProjectDir)\Executables2022.wxs" Directory="..\..\bin\Release2022\net48" ComponentGroupName="ExecutablesGroup2022" DirectoryRefId="RevitAddinFolder2022" GenerateGuidsNow="true" PreprocessorVariable="var.ExecutablesPath2022" SuppressRegistry="true" SuppressFragments="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" AutogenerateGuids="true" />
+    <HeatDirectory OutputFile="$(ProjectDir)\Executables2023.wxs" Directory="..\..\bin\Release2023\net48" ComponentGroupName="ExecutablesGroup2023" DirectoryRefId="RevitAddinFolder2023" GenerateGuidsNow="true" PreprocessorVariable="var.ExecutablesPath2023" SuppressRegistry="true" SuppressFragments="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" AutogenerateGuids="true" />
+    <HeatDirectory OutputFile="$(ProjectDir)\Executables2024.wxs" Directory="..\..\bin\Release2024\net48" ComponentGroupName="ExecutablesGroup2024" DirectoryRefId="RevitAddinFolder2024" GenerateGuidsNow="true" PreprocessorVariable="var.ExecutablesPath2024" SuppressRegistry="true" SuppressFragments="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" AutogenerateGuids="true" />
+    <HeatDirectory OutputFile="$(ProjectDir)\Executables2025.wxs" Directory="..\..\bin\Release2025\net8.0-windows" ComponentGroupName="ExecutablesGroup2025" DirectoryRefId="RevitAddinFolder2025" GenerateGuidsNow="true" PreprocessorVariable="var.ExecutablesPath2025" SuppressRegistry="true" SuppressFragments="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" AutogenerateGuids="true" />
+  </Target>
+</Project>

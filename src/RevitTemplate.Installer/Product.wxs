@@ -1,0 +1,142 @@
+﻿<?include "GlobalVariables.wxi"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+  <Package Name="$(var.AppName)"
+           Language="1033"
+           Version="$(var.BuildVersion)"
+           Manufacturer="$(var.Manufacturer)"
+           UpgradeCode="4B3E5EE8-74B7-42C1-A881-52359435AFE7"
+           InstallerVersion="200"
+           Scope="perUser"
+           Compressed="yes">
+
+    <MajorUpgrade Schedule="afterInstallInitialize"
+                  AllowSameVersionUpgrades="yes"
+                  DowngradeErrorMessage="Newer version already installed" />
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="$(var.AppName) Main" Level="1">
+      <ComponentRef Id="RemoveAll" />
+      <ComponentRef Id="RevitAddinComponent2020" />
+      <ComponentRef Id="RevitAddinComponent2021" />
+      <ComponentRef Id="RevitAddinComponent2022" />
+      <ComponentRef Id="RevitAddinComponent2023" />
+      <ComponentRef Id="RevitAddinComponent2024" />
+      <ComponentRef Id="RevitAddinComponent2025" />
+
+      <ComponentRef Id="PackageContents" />
+      <ComponentGroupRef Id="ExecutablesGroup2020" />
+      <ComponentGroupRef Id="ExecutablesGroup2021" />
+      <ComponentGroupRef Id="ExecutablesGroup2022" />
+      <ComponentGroupRef Id="ExecutablesGroup2023" />
+      <ComponentGroupRef Id="ExecutablesGroup2024" />
+      <ComponentGroupRef Id="ExecutablesGroup2025" />
+
+    </Feature>
+
+    <UI Id="WixUI_Minimal">
+      <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+      <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+      <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+
+      <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+      <Property Id="WixUI_Mode" Value="Minimal" />
+
+      <DialogRef Id="ErrorDlg" />
+      <DialogRef Id="FatalError" />
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      <DialogRef Id="PrepareDlg" />
+      <DialogRef Id="ProgressDlg" />
+      <DialogRef Id="ResumeDlg" />
+      <DialogRef Id="UserExit" />
+      <DialogRef Id="VerifyReadyDlg" />
+      <DialogRef Id="WelcomeDlg" />
+
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg" />
+
+      <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999" />
+
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" />
+
+      <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg" />
+
+      <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg" />
+      <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg" />
+      <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg" />
+
+      <Property Id="ARPNOMODIFY" Value="1" />
+    </UI>
+
+    <WixVariable Id="WixUIBannerBmp" Value="Assets\banner-small.jpg" />
+    <WixVariable Id="WixUIDialogBmp" Value="Assets\banner-large.jpg" />
+    <Icon Id="logo.ico" SourceFile="Assets\rembox-icon-white.ico" />
+    <Property Id="ARPPRODUCTICON" Value="logo.ico" />
+
+    <UIRef Id="WixUI_Common" />
+
+    <Property Id="APPLICATIONFOLDER">
+      <RegistrySearch Key="SOFTWARE\$(var.Manufacturer)\$(var.AppName)" Root="HKCU" Type="raw" Id="APPLICATIONFOLDER_REGSEARCH" Name="Path" />
+    </Property>
+  </Package>
+
+  <Fragment>
+      <StandardDirectory Id="CommonAppDataFolder">
+        <Directory Id="AdskFolder" Name="Autodesk">
+          <Directory Id="AppPlugins" Name="ApplicationPlugins">
+            <Directory Id="BundleFolder" Name="RevitTemplate.bundle">
+              <Component Id="PackageContents" Guid="B6E4A7B2-74B3-4CC3-9371-518F0D837AD8">
+                <File Id="PackageContentsFile" KeyPath="yes" Source="$(var.RevitTemplate.Main.ProjectDir)\Manifests\PackageContents.xml" />
+              </Component>
+              <Directory Id="ContentsFolder" Name="Contents">
+                <Directory Id="RevitAddinFolder2020" Name="Revit 2020">
+                  <Component Id="RevitAddinComponent2020" Guid="41BA2D05-6C39-4236-8848-E842B2055DF5">
+                    <File Id="RevitAddinFile2020" KeyPath="yes" Source="$(var.RevitTemplate.Main.ProjectDir)\Manifests\RevitAppManifest.addin" />
+                  </Component>
+                </Directory>
+
+                <Directory Id="RevitAddinFolder2021" Name="Revit 2021">
+                  <Component Id="RevitAddinComponent2021" Guid="5ECFC4F3-E668-4776-A901-41D747373E35">
+                    <File Id="RevitAddinFile2021" KeyPath="yes" Source="$(var.RevitTemplate.Main.ProjectDir)\Manifests\RevitAppManifest.addin" />
+                  </Component>
+                </Directory>
+
+                <Directory Id="RevitAddinFolder2022" Name="Revit 2022">
+                  <Component Id="RevitAddinComponent2022" Guid="FC877B8E-F7FF-4965-8242-C72E051F171C">
+                    <File Id="RevitAddinFile2022" KeyPath="yes" Source="$(var.RevitTemplate.Main.ProjectDir)\Manifests\RevitAppManifest.addin" />
+                  </Component>
+                </Directory>
+
+                <Directory Id="RevitAddinFolder2023" Name="Revit 2023">
+                  <Component Id="RevitAddinComponent2023" Guid="BD6C3EA7-0547-4A1B-82EA-32B8714B1529">
+                    <File Id="RevitAddinFile2023" KeyPath="yes" Source="$(var.RevitTemplate.Main.ProjectDir)\Manifests\RevitAppManifest.addin" />
+                  </Component>
+                </Directory>
+
+                <Directory Id="RevitAddinFolder2024" Name="Revit 2024">
+                  <Component Id="RevitAddinComponent2024" Guid="FE73E9CC-52C7-4009-8D6C-C2C737472BE6">
+                    <File Id="RevitAddinFile2024" KeyPath="yes" Source="$(var.RevitTemplate.Main.ProjectDir)\Manifests\RevitAppManifest.addin" />
+                  </Component>
+                </Directory>
+
+                <Directory Id="RevitAddinFolder2025" Name="Revit 2025">
+                  <Component Id="RevitAddinComponent2025" Guid="5D468206-DA9F-4C96-AFE2-8704773859FB">
+                    <File Id="RevitAddinFile2025" KeyPath="yes" Source="$(var.RevitTemplate.Main.ProjectDir)\Manifests\RevitAppManifest.addin" />
+                  </Component>
+                </Directory>
+
+                <Component Id="RemoveAll" Guid="3D3B53CA-638B-4EED-8354-020BD863549D">
+                  <RemoveFolder Id="RemoveAllFoldersOnUninstall" Directory="BundleFolder" On="uninstall" />
+                  <RegistryValue Root="HKCU" Key="SOFTWARE\$(var.Manufacturer)\$(var.AppName)" Name="Path" Type="string" Value="[VersionFolder]" KeyPath="yes" />
+
+                  <util:RemoveFolderEx On="uninstall" Property="VersionFolder" />
+                </Component>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+      </StandardDirectory>
+    </Fragment>
+</Wix>

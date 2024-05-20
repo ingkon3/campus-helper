@@ -1,0 +1,6 @@
+﻿<Include xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <?define Manufacturer="Vendor"?>
+  <?define AppName="$(var.OutputName)"?>
+  <?define ProjectName="RevitTemplate.Main"?>
+  <?define BuildVersion="$(var.Version)" ?>
+</Include>

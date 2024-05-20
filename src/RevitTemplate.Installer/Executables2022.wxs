@@ -1,0 +1,46 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+    <Fragment>
+        <DirectoryRef Id="RevitAddinFolder2022">
+            <Component Id="cmpB9lifUsAiIX_FcJUZI7o.kk3_L4" Guid="*">
+                <File Id="filcoplRmiCgCNi.2wDtyYi_PY.R6g" KeyPath="yes" Source="$(var.ExecutablesPath2022)\Ninject.dll" />
+            </Component>
+            <Component Id="cmp2Ng7hfVEIQL95E0u67UCkpr6eDY" Guid="*">
+                <File Id="filguhDTAyUPmKmRuvda.CWGY8t2.M" KeyPath="yes" Source="$(var.ExecutablesPath2022)\RevitTemplate.Core.dll" />
+            </Component>
+            <Component Id="cmpNqwENVzM4WBchvzREqROWjeGeBM" Guid="*">
+                <File Id="filGBb8RuAui4YjMukrZ4tWF9tHsaE" KeyPath="yes" Source="$(var.ExecutablesPath2022)\RevitTemplate.Core.pdb" />
+            </Component>
+            <Component Id="cmp1aOQ0ulA2_W3Q3g08IjML40nuRc" Guid="*">
+                <File Id="filye3D0UGDTR9LP0sBv2fgqe.a6Go" KeyPath="yes" Source="$(var.ExecutablesPath2022)\RevitTemplate.Main.dll" />
+            </Component>
+            <Component Id="cmp6tIHsnkP7g8CGaAD8x56h.L1of0" Guid="*">
+                <File Id="fil1uq22ntiqdQS8Zf6mqrLwWe.9bI" KeyPath="yes" Source="$(var.ExecutablesPath2022)\RevitTemplate.Main.pdb" />
+            </Component>
+            <Component Id="cmpCCxf8OVgjWtQ1KrtL8RQMgJu2yU" Guid="*">
+                <File Id="filRcHsAq53NbDGGuubb7iv7crAwqw" KeyPath="yes" Source="$(var.ExecutablesPath2022)\RevitTemplate.UI.dll" />
+            </Component>
+            <Component Id="cmpb__jmNSUqRD4YViu5Nxce9qH0Ks" Guid="*">
+                <File Id="filaJRsPkCDDjMf0UmYOVVKzXL1wgk" KeyPath="yes" Source="$(var.ExecutablesPath2022)\RevitTemplate.UI.pdb" />
+            </Component>
+            <Component Id="cmpz2zdEjWVd1M8VzYT6Qp3KpYBEeY" Guid="*">
+                <File Id="filMeH_hIwtOcLVE65VOpf0VYEIO0I" KeyPath="yes" Source="$(var.ExecutablesPath2022)\RevitTemplate.Web.dll" />
+            </Component>
+            <Component Id="cmpnPZkxmIYirxLt0IKIJss10LP.dc" Guid="*">
+                <File Id="filMb_k8fh8ADy0GWeA_J33NKMzoi8" KeyPath="yes" Source="$(var.ExecutablesPath2022)\RevitTemplate.Web.pdb" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="ExecutablesGroup2022">
+            <ComponentRef Id="cmpB9lifUsAiIX_FcJUZI7o.kk3_L4" />
+            <ComponentRef Id="cmp2Ng7hfVEIQL95E0u67UCkpr6eDY" />
+            <ComponentRef Id="cmpNqwENVzM4WBchvzREqROWjeGeBM" />
+            <ComponentRef Id="cmp1aOQ0ulA2_W3Q3g08IjML40nuRc" />
+            <ComponentRef Id="cmp6tIHsnkP7g8CGaAD8x56h.L1of0" />
+            <ComponentRef Id="cmpCCxf8OVgjWtQ1KrtL8RQMgJu2yU" />
+            <ComponentRef Id="cmpb__jmNSUqRD4YViu5Nxce9qH0Ks" />
+            <ComponentRef Id="cmpz2zdEjWVd1M8VzYT6Qp3KpYBEeY" />
+            <ComponentRef Id="cmpnPZkxmIYirxLt0IKIJss10LP.dc" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>
