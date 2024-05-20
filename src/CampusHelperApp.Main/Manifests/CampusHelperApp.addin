@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+   <FullClassName>CampusHelperApp.Main.App</FullClassName>
+   <ClientId>7C6B00B0-C431-48C9-AD31-C0168FF52992</ClientId>
+   <Name>Campus Helper</Name>
+   <Assembly>CampusHelperApp.Main.dll</Assembly>
+   <VendorId>RusRA</VendorId>
+ </AddIn>
+</RevitAddIns>
+
