@@ -1,6 +1,6 @@
-﻿<Include xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <?define Manufacturer="Vendor"?>
+<Include xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <?define Manufacturer="RusRA"?>
   <?define AppName="$(var.OutputName)"?>
-  <?define ProjectName="RevitTemplate.Main"?>
+  <?define ProjectName="CampusHelperApp.Main"?>
   <?define BuildVersion="$(var.Version)" ?>
 </Include>

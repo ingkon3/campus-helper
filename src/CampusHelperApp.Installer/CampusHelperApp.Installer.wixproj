@@ -37,6 +37,14 @@
   <ItemGroup>
     <Folder Include="Assets\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Executables2020.wxs" />
+    <Compile Include="Executables2021.wxs" />
+    <Compile Include="Executables2022.wxs" />
+    <Compile Include="Executables2023.wxs" />
+    <Compile Include="Executables2024.wxs" />
+    <Compile Include="Executables2025.wxs" />
+  </ItemGroup>
   <PropertyGroup>
     <DefineConstants>ExecutablesPath2020=..\..\bin\Release2020\net48;ExecutablesPath2021=..\..\bin\Release2021\net48;ExecutablesPath2022=..\..\bin\Release2021\net48;ExecutablesPath2023=..\..\bin\Release2023\net48;ExecutablesPath2024=..\..\bin\Release2024\net48;ExecutablesPath2025=..\..\bin\Release2025\net8.0-windows; OutputName=$(OutputName); Version=$(Version)</DefineConstants>
   </PropertyGroup>
