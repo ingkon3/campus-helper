@@ -3,6 +3,7 @@
   <PropertyGroup>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
+    <Platforms>x64;x86</Platforms>
   </PropertyGroup>
 
   <Choose>

@@ -6,15 +6,15 @@
     <UseWPF>true</UseWPF>
     <StartupObject>CampusHelperApp.Sandbox.Launcher</StartupObject>
     <Configurations>Debug;Release</Configurations>
-    <Platforms>x64</Platforms>
+    <Platforms>x64;x86</Platforms>
     <PublishReadyToRun>true</PublishReadyToRun>
     <PublishSingleFile>true</PublishSingleFile>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CampusHelperApp.Core\CampusHelperApp.Core.csproj"/>
-    <ProjectReference Include="..\CampusHelperApp.UI\CampusHelperApp.UI.csproj"/>
+    <ProjectReference Include="..\CampusHelperApp.Core\CampusHelperApp.Core.csproj" />
+    <ProjectReference Include="..\CampusHelperApp.UI\CampusHelperApp.UI.csproj" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">

@@ -6,7 +6,7 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <Configurations>Debug;Release</Configurations>
-    <Platforms>x64</Platforms>
+    <Platforms>x64;x86</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
@@ -14,8 +14,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0"/>
-    <PackageReference Include="xunit" Version="2.4.2"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -27,8 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CampusHelperApp.Core\CampusHelperApp.Core.csproj"/>
+    <ProjectReference Include="..\CampusHelperApp.Core\CampusHelperApp.Core.csproj" />
     <ProjectReference Include="..\CampusHelperApp.UI\CampusHelperApp.UI.csproj" />
-    <ProjectReference Include="..\CampusHelperApp.Web\CampusHelperApp.Web.csproj"/>
+    <ProjectReference Include="..\CampusHelperApp.Web\CampusHelperApp.Web.csproj" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <Platforms>x64;x86</Platforms>
+  </PropertyGroup>
+
   <Choose>
     <When Condition=" '$(Configuration)|$(Platform)' == 'Release2025|x64' ">
       <PropertyGroup>
