@@ -30,9 +30,82 @@ namespace CampusHelperApp.Main
             ref string message,
             ElementSet elements)
         {
-            TaskDialog.Show("Hello", "it's PanelMarkerCommand");
+            #region Variables
+            UIApplication uiapp = commandData.Application;
+            Autodesk.Revit.ApplicationServices.Application app = uiapp.Application;
+            UIDocument uidoc = commandData.Application.ActiveUIDocument;
+            Document doc = uidoc.Document;
+            #endregion
+
+            List<FamilyInstance> panels = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_GenericModel)
+                .WhereElementIsNotElementType()
+                .ToElements()
+                .Where(x => (x.Name.ToLower().Contains("jci")
+                || x.Name.ToLower().Contains("tci")
+                || x.Name.ToLower().Contains("pr")))
+                .Where(x => !x.get_Parameter(BuiltInParameter.ELEM_FAMILY_PARAM).AsValueString().ToLower().Contains("panel"))
+                .OfType<FamilyInstance>()
+                .ToList();
+
+            if ( panels.Count == 0 )
+            {
+                TaskDialog.Show("message", $"There aren't JCI, TCI & PR panels in the project!");
+
+                return Result.Succeeded;
+            }
+            try
+            {
+
+                List<FamilyInstance> wrongPanels = FindWrongPanels(panels);
+
+                using (Transaction trans = new Transaction(doc, "Mark Panels"))
+
+                {
+                    trans.Start();
+                    foreach (FamilyInstance wrongPanel in wrongPanels)
+                    {
+                        FamilySymbol wrongPanelSymbol = wrongPanel?.Symbol;
+                        string SymbolFamilyMark = wrongPanelSymbol?.LookupParameter("SH_Family_Mark")?.AsString();
+                        string SymbolMarkNumber = wrongPanelSymbol?.LookupParameter("S_MARK_NUMBER")?.AsString();
+                        string SymbolPrecastName = SymbolFamilyMark + SymbolMarkNumber;
+
+                        wrongPanel?.LookupParameter("S_Precast_Name")?.Set(SymbolPrecastName);
+                    }
+
+                    trans.Commit();
+                }
+
+                TaskDialog.Show("message", $"Count wrong Panel Mark = {wrongPanels.Count}");
+            }
+            catch (Exception ex) { TaskDialog.Show("Error!!!", $"Error!!!\n{ex.Message}"); }
+
 
             return Result.Succeeded;
+        }
+
+        public List<FamilyInstance> FindWrongPanels(List<FamilyInstance> panels)
+        {
+            List<FamilyInstance> wrongPanels = new List<FamilyInstance>();
+
+            foreach (FamilyInstance panel in panels)
+            {
+                FamilySymbol panelSymbol = panel?.Symbol;
+                string InstancePrecastName = panel?.LookupParameter("S_Precast_Name")?.AsString();
+
+                string SymbolType = panelSymbol?.LookupParameter("S_TYPE_GENERAL")?.AsString();
+                string SymbolFamilyMark = panelSymbol?.LookupParameter("SH_Family_Mark")?.AsString();
+                string SymbolMarkNumber = panelSymbol?.LookupParameter("S_MARK_NUMBER")?.AsString();
+
+                string SymbolPrecastName = SymbolFamilyMark + SymbolMarkNumber;
+
+                if (InstancePrecastName != SymbolPrecastName)
+                {
+                    wrongPanels.Add(panel);
+                }
+            }
+
+            return wrongPanels;
+
         }
     }
 }
