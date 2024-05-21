@@ -5,28 +5,28 @@
                 <File Id="filKeTP619xp5cto1vopu9ll9AqK2U" KeyPath="yes" Source="$(var.ExecutablesPath2021)\Ninject.dll" />
             </Component>
             <Component Id="cmp5uieOF.kElrfto3zscR4hPLc_1s" Guid="*">
-                <File Id="filY82n4owT_XrzGBwXAz2cH.bHcp8" KeyPath="yes" Source="$(var.ExecutablesPath2021)\RevitTemplate.Core.dll" />
+                <File Id="filY82n4owT_XrzGBwXAz2cH.bHcp8" KeyPath="yes" Source="$(var.ExecutablesPath2021)\CampusHelperApp.Core.dll" />
             </Component>
             <Component Id="cmpEk4L0Z3AM2HVCwsvlBn.yiy30O4" Guid="*">
-                <File Id="filZW1VIzoO59jRTO7P46BZNyN.IJs" KeyPath="yes" Source="$(var.ExecutablesPath2021)\RevitTemplate.Core.pdb" />
+                <File Id="filZW1VIzoO59jRTO7P46BZNyN.IJs" KeyPath="yes" Source="$(var.ExecutablesPath2021)\CampusHelperApp.Core.pdb" />
             </Component>
             <Component Id="cmpPfYFictD_UcY8LSsUV7fnZxFeBA" Guid="*">
-                <File Id="filP6aTIZ3xNj_LpFnRcLAfrNhF2vQ" KeyPath="yes" Source="$(var.ExecutablesPath2021)\RevitTemplate.Main.dll" />
+                <File Id="filP6aTIZ3xNj_LpFnRcLAfrNhF2vQ" KeyPath="yes" Source="$(var.ExecutablesPath2021)\CampusHelperApp.Main.dll" />
             </Component>
             <Component Id="cmpEK.OI5bafIocRX83mfzJkeiZus0" Guid="*">
-                <File Id="fil8mRvHwCstyIK4hr0m7EFJurgZO0" KeyPath="yes" Source="$(var.ExecutablesPath2021)\RevitTemplate.Main.pdb" />
+                <File Id="fil8mRvHwCstyIK4hr0m7EFJurgZO0" KeyPath="yes" Source="$(var.ExecutablesPath2021)\CampusHelperApp.Main.pdb" />
             </Component>
             <Component Id="cmpuQ1JpeyMWK9MjFSSI_ruHh7Tv9s" Guid="*">
-                <File Id="fileLuXKyoagUFYRcupFC408wvAAS0" KeyPath="yes" Source="$(var.ExecutablesPath2021)\RevitTemplate.UI.dll" />
+                <File Id="fileLuXKyoagUFYRcupFC408wvAAS0" KeyPath="yes" Source="$(var.ExecutablesPath2021)\CampusHelperApp.UI.dll" />
             </Component>
             <Component Id="cmpJ55Esjx2XfJGtk4gKRFBO40Xxz4" Guid="*">
-                <File Id="filKicX8VlFvnexzmbsMu2uYyMIYyc" KeyPath="yes" Source="$(var.ExecutablesPath2021)\RevitTemplate.UI.pdb" />
+                <File Id="filKicX8VlFvnexzmbsMu2uYyMIYyc" KeyPath="yes" Source="$(var.ExecutablesPath2021)\CampusHelperApp.UI.pdb" />
             </Component>
             <Component Id="cmpoLlr1Kwv.uIvmNs_AEXJf6JpEaw" Guid="*">
-                <File Id="filgL2pkTItqYYe3MIaDueseCWKzV0" KeyPath="yes" Source="$(var.ExecutablesPath2021)\RevitTemplate.Web.dll" />
+                <File Id="filgL2pkTItqYYe3MIaDueseCWKzV0" KeyPath="yes" Source="$(var.ExecutablesPath2021)\CampusHelperApp.Web.dll" />
             </Component>
             <Component Id="cmp2XfoRgsFBtUrifiguYhZqGe5RRc" Guid="*">
-                <File Id="filtqdb5126CA89wgqbAoDTq45X2Bo" KeyPath="yes" Source="$(var.ExecutablesPath2021)\RevitTemplate.Web.pdb" />
+                <File Id="filtqdb5126CA89wgqbAoDTq45X2Bo" KeyPath="yes" Source="$(var.ExecutablesPath2021)\CampusHelperApp.Web.pdb" />
             </Component>
         </DirectoryRef>
     </Fragment>
