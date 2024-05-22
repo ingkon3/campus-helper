@@ -20,7 +20,6 @@
     <Content Include="GlobalVariables.wxi" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CampusHelperApp.Core\CampusHelperApp.Core.csproj" />
     <ProjectReference Include="..\CampusHelperApp.Main\CampusHelperApp.Main.csproj" />
   </ItemGroup>
   <ItemGroup>

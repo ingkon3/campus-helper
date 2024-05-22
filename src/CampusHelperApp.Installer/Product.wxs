@@ -1,6 +1,6 @@
 <?include "GlobalVariables.wxi"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
-    <Package Name="$(var.AppName)"
+  <Package Name="$(var.AppName)"
            Language="1033"
            Version="$(var.BuildVersion)"
            Manufacturer="$(var.Manufacturer)"

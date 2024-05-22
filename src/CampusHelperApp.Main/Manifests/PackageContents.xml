@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ApplicationPackage SchemaVersion="1.0" AutodeskProduct="Revit" ProductType="Application" AppVersion="1.0.0"
-                    SupportedLocales="Enu" ProductCode="0EB0D776-62FB-45F5-AFE6-26EB0360C320">
+                    SupportedLocales="Enu" ProductCode="903db2ac-10ac-4c87-b081-a3a2503d815b">
   <CompanyDetails Name="RusRA" Url="https://VendorUrl.com/" Email="email@vendor.com"/>
   <Components Description="Contents 2020">
     <RuntimeRequirements OS="Win64" Platform="Revit" SeriesMin="R2020" SeriesMax="R2020"/>
