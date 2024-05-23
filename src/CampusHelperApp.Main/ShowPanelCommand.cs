@@ -7,6 +7,7 @@ using CampusHelperApp.UI.ViewModels;
 using CampusHelperApp.UI.Views;
 using TaskDialog = Autodesk.Revit.UI.TaskDialog;
 using View = Autodesk.Revit.DB.View;
+using System.Windows.Controls;
 
 namespace CampusHelperApp.Main
 {
@@ -55,32 +56,21 @@ namespace CampusHelperApp.Main
 
                 return Result.Succeeded;
             }
+
             try
             {
-
                 List<FamilyInstance> wrongPanels = FindWrongPanels(panels);
 
                 if (wrongPanels.Count > 0)
                 {
                     string viewName = "3d Panels";
                     View threeDView = null;
-                    if (ViewExists(viewName, doc))
+                    if (!ViewExists(viewName, doc))
                     {
-                        IList<View3D> viewList = new FilteredElementCollector(doc)
-                            .OfClass(typeof(View3D))
-                            .Cast<View3D>()
-                            .Where(v => v.IsTemplate == false)
-                            .ToList();
-                        foreach (View3D view in viewList)
-                        {
-                            if ((view.Name) == (viewName))
-                            {
-                                threeDView = view;
-                            }
-                        }
-                    }
-                    else
                         Create3DView(ref doc, viewName);
+                    }
+
+                    FindView(doc, viewName, ref threeDView);
 
                     uidoc.ActiveView = threeDView;
 
@@ -108,31 +98,29 @@ namespace CampusHelperApp.Main
         }
 
 
-        private void Create3DView(ref Document document, string viewname)
+        private void Create3DView(ref Document document, string viewName)
         {
-            if (ViewExists(viewname, document) == true)
+            View threeDView = null;
+            if (ViewExists(viewName, document))
             {
                 return;
             }
 
 
             // Find a 3D view type
-            var collector1 = new FilteredElementCollector(document);
-            collector1 = collector1.OfClass(typeof(ViewFamilyType));
-            IEnumerable<ViewFamilyType> viewFamilyTypes;
-            viewFamilyTypes = from elem in collector1
-                              let vftype = elem as ViewFamilyType
-                              where vftype.ViewFamily == ViewFamily.ThreeDimensional
-                              select vftype;
+            var viewFamilyTypes = new FilteredElementCollector(document)
+                .OfClass(typeof(ViewFamilyType))
+                .Cast<ViewFamilyType>()
+                .Where(vftype => vftype.ViewFamily == ViewFamily.ThreeDimensional);
 
             using (var t = new Transaction(document, "Create 3D View"))
             {
                 t.Start();
                 // Create a new View3D
-                var view3D = View3D.CreateIsometric(document, viewFamilyTypes.First().Id);
+                View3D view3D = View3D.CreateIsometric(document, viewFamilyTypes.First().Id);
                 if (view3D is object)
                 {
-                    view3D.Name = viewname;
+                    view3D.Name = viewName;
                 }
 
                 t.Commit();
@@ -140,10 +128,24 @@ namespace CampusHelperApp.Main
         }
 
 
-        private bool ViewExists(string ViewName, Document _doc)
+        private void FindView(Document document, string viewName, ref View view)
+        {
+            if (ViewExists(viewName, document))
+            {
+                IList<View> viewList = new FilteredElementCollector(document)
+                    .OfClass(typeof(View))
+                    .Cast<View>()
+                    .Where(v => v.IsTemplate == false)
+                    .ToList();
+                view = viewList.Where(v => v.Name == viewName).FirstOrDefault();
+            }
+        }
+
+
+        private bool ViewExists(string ViewName, Document document)
         {
             bool retval = false;
-            IList<View3D> viewList = new FilteredElementCollector(_doc).OfClass(typeof(View3D)).Cast<View3D>().Where(v => v.IsTemplate == false).ToList();
+            IList<View3D> viewList = new FilteredElementCollector(document).OfClass(typeof(View3D)).Cast<View3D>().Where(v => v.IsTemplate == false).ToList();
             foreach (View3D view in viewList)
             {
                 if ((view.Name ?? "") == (ViewName ?? ""))

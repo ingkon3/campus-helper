@@ -53,4 +53,8 @@
     <EmbeddedResource Include="Resources\Icons\PartForSheet.png" />
     <EmbeddedResource Include="Resources\Icons\ShowWrongPanel.png" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Autodesk.Revit.SDK" Version="2023.0.0.2001" />
+  </ItemGroup>
 </Project>

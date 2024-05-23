@@ -16,4 +16,8 @@
       </PropertyGroup>
     </Otherwise>
   </Choose>
+
+  <ItemGroup>
+    <PackageReference Update="Autodesk.Revit.SDK" Version="2023.0.0.2001" />
+  </ItemGroup>
 </Project>

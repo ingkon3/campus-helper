@@ -23,4 +23,8 @@
     <ProjectReference Include="..\CampusHelperApp.Core\CampusHelperApp.Core.csproj" />
     <ProjectReference Include="..\CampusHelperApp.Web\CampusHelperApp.Web.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Autodesk.Revit.SDK" Version="2023.0.0.2001" />
+  </ItemGroup>
 </Project>

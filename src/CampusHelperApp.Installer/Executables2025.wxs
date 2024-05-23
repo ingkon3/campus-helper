@@ -1,4 +1,4 @@
-﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
     <Fragment>
         <DirectoryRef Id="RevitAddinFolder2025">
             <Component Id="cmpWKCX8kbGKGYrEB0TS7jhrR38hlA" Guid="*">
@@ -10,9 +10,9 @@
             <Component Id="cmpwjZdfytxBQeOe1bOEEqb01KbjO0" Guid="*">
                 <File Id="filJqdun5wEE_N0rV0fhaumMnY3bmA" KeyPath="yes" Source="$(var.ExecutablesPath2025)\CampusHelperApp.Core.pdb" />
             </Component>
-            <Component Id="cmpfHIxLxl5lgW6JrYaHxOxafFjEd4" Guid="*">
+            <!--<Component Id="cmpfHIxLxl5lgW6JrYaHxOxafFjEd4" Guid="*">
                 <File Id="filDLR0WJYKXFADfAU4YfDs9aJme_M" KeyPath="yes" Source="$(var.ExecutablesPath2025)\CampusHelperApp.Main.deps.json" />
-            </Component>
+            </Component>-->
             <Component Id="cmpMV_52Tk.QqfrR7RWO5JIkc.TPXw" Guid="*">
                 <File Id="fil3x5uQjRsHcCWDL29i1j0XhTDsuI" KeyPath="yes" Source="$(var.ExecutablesPath2025)\CampusHelperApp.Main.dll" />
             </Component>
@@ -41,7 +41,7 @@
             <ComponentRef Id="cmpWKCX8kbGKGYrEB0TS7jhrR38hlA" />
             <ComponentRef Id="cmpLuCDFiC50ufw1npblLVZLwYPHL4" />
             <ComponentRef Id="cmpwjZdfytxBQeOe1bOEEqb01KbjO0" />
-            <ComponentRef Id="cmpfHIxLxl5lgW6JrYaHxOxafFjEd4" />
+            <!--<ComponentRef Id="cmpfHIxLxl5lgW6JrYaHxOxafFjEd4" />-->
             <ComponentRef Id="cmpMV_52Tk.QqfrR7RWO5JIkc.TPXw" />
             <ComponentRef Id="cmpIw0GBA78z8oPnpxavEgaafQVYUE" />
             <ComponentRef Id="cmpMKbU8ba_OzVK22bBnfdhpHl5qdg" />

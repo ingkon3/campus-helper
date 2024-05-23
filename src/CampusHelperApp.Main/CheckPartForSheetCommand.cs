@@ -30,7 +30,9 @@ namespace CampusHelperApp.Main
                                                                  { "214 A", "B_IS_PART_214A" },
                                                                  { "214 B", "B_IS_PART_214B" }
                                                              };
+
         List<string> corpusNames = new List<string>() { "212 A", "212 B", "212 C", "212 D", "213 A", "213 B", "214 A", "214 B" };
+
         List<string> partParameterNames = new List<string>() { "B_IS_PART_212A", "B_IS_PART_212B", "B_IS_PART_212C", "B_IS_PART_212D",
                 "B_IS_PART_213A", "B_IS_PART_213B", "B_IS_PART_214A", "B_IS_PART_214B", "B_IS_WHOLE_BUILDING" };
 
@@ -60,8 +62,10 @@ namespace CampusHelperApp.Main
             IList<ViewSheet> selectedSheet = selection.Where(e => e.GetType() == typeof(ViewSheet)).ToList().OfType<ViewSheet>().ToList();
             #endregion
 
+            //TODO: сделать вывод сообщений. Может быть сделать окно
             try
             {
+                int counter = 0;
                 using (Transaction trans = new Transaction(doc, "Set PartName for sheets"))
                 {
                     trans.Start();
@@ -76,13 +80,25 @@ namespace CampusHelperApp.Main
                                 var titleBlocks = sheet.GetDependentElements(titleBlocksFilter).Select(id => doc.GetElement(id));
                                 foreach (var titleBlock in titleBlocks)
                                 {
-                                    SetParTitleBlock(titleBlock, corpusName);
+                                    SetParTitleBlock(titleBlock, corpusName, out bool isSet);
+                                    if (isSet)
+                                    {
+                                        counter++;
+                                    }
                                 }
                             }
                         }
                     }
-
                     trans.Commit();
+                }
+
+                if(counter == 0)
+                {
+                    TaskDialog.Show("Message", $"Good!!!\nAll sheets were correct, there were no changes!!!");
+                }
+                else
+                {
+                    TaskDialog.Show("Message", $"Were no changes!!!\n Count sheets with changes = {counter}");
                 }
 
             }
@@ -93,35 +109,47 @@ namespace CampusHelperApp.Main
 
 
         // Метод для обработки каждого блока
-        void SetParTitleBlock(Element titleBlock, string corpusName)
+        void SetParTitleBlock(Element titleBlock, string corpusName, out bool isSet)
         {
+            isSet = false;
             if (blockParameters.TryGetValue(corpusName, out string parameterName))
             {
                 Parameter partParameter = titleBlock.LookupParameter(parameterName);
 
                 if (partParameter != null)
                 {
-                    SetPartParameterValues(titleBlock, partParameter, parameterName);
+                    SetPartParameterValues(titleBlock, partParameter, parameterName, out int counter);
+                    if(counter > 0)
+                    {
+                        isSet = true;
+                    }
                 }
             }
         }
 
 
         // Метод для установки значений параметров блока
-        void SetPartParameterValues(Element titleBlock, Parameter partParameter, string parameterName)
+        void SetPartParameterValues(Element titleBlock, Parameter partParameter, string parameterName, out int counter)
         {
+            counter = 0;
             foreach (var partParameterName in partParameterNames)
             {
                 if (partParameterName != parameterName)
                 {
-                    titleBlock.LookupParameter(partParameterName)?.Set(0);
+                    if(titleBlock.LookupParameter(parameterName).AsInteger()!=0)
+                    {
+                        titleBlock.LookupParameter(partParameterName)?.Set(0);
+                        counter++;
+                    }
                 }
             }
 
             if (partParameter.AsInteger() == 0)
             {
                 partParameter.Set(1);
+                counter++;
             }
         }
+
     }
 }

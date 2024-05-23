@@ -58,24 +58,31 @@ namespace CampusHelperApp.Main
 
                 List<FamilyInstance> wrongPanels = FindWrongPanels(panels);
 
-                using (Transaction trans = new Transaction(doc, "Mark Panels"))
-
+                if(wrongPanels.Count > 0 )
                 {
-                    trans.Start();
-                    foreach (FamilyInstance wrongPanel in wrongPanels)
-                    {
-                        FamilySymbol wrongPanelSymbol = wrongPanel?.Symbol;
-                        string SymbolFamilyMark = wrongPanelSymbol?.LookupParameter("SH_Family_Mark")?.AsString();
-                        string SymbolMarkNumber = wrongPanelSymbol?.LookupParameter("S_MARK_NUMBER")?.AsString();
-                        string SymbolPrecastName = SymbolFamilyMark + SymbolMarkNumber;
+                    using (Transaction trans = new Transaction(doc, "Mark Panels"))
 
-                        wrongPanel?.LookupParameter("S_Precast_Name")?.Set(SymbolPrecastName);
+                    {
+                        trans.Start();
+                        foreach (FamilyInstance wrongPanel in wrongPanels)
+                        {
+                            FamilySymbol wrongPanelSymbol = wrongPanel?.Symbol;
+                            string SymbolFamilyMark = wrongPanelSymbol?.LookupParameter("SH_Family_Mark")?.AsString();
+                            string SymbolMarkNumber = wrongPanelSymbol?.LookupParameter("S_MARK_NUMBER")?.AsString();
+                            string SymbolPrecastName = SymbolFamilyMark + SymbolMarkNumber;
+
+                            wrongPanel?.LookupParameter("S_Precast_Name")?.Set(SymbolPrecastName);
+                        }
+
+                        trans.Commit();
                     }
 
-                    trans.Commit();
+                    TaskDialog.Show("message", $"Count wrong Panel Mark = {wrongPanels.Count}");
                 }
-
-                TaskDialog.Show("message", $"Count wrong Panel Mark = {wrongPanels.Count}");
+                else
+                {
+                    TaskDialog.Show("message", $"All Mark Panels Good!!!");
+                }
             }
             catch (Exception ex) { TaskDialog.Show("Error!!!", $"Error!!!\n{ex.Message}"); }
 
