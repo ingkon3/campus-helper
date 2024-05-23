@@ -7,6 +7,8 @@ using CampusHelperApp.UI.ViewModels;
 using CampusHelperApp.UI.Views;
 using TaskDialog = Autodesk.Revit.UI.TaskDialog;
 using CampusHelperApp.Main.Infrastructure.Extensions;
+using static System.Net.Mime.MediaTypeNames;
+using System.Data.SqlTypes;
 
 namespace CampusHelperApp.Main
 {
@@ -72,9 +74,10 @@ namespace CampusHelperApp.Main
                     foreach (var sheet in selectedSheet)
                     {
                         string sheetName = sheet.Name;
+
                         foreach (var corpusName in corpusNames)
                         {
-                            if (sheetName.Contains(corpusName))
+                            if (sheetName.Contains(corpusName) || sheetName.Contains(corpusName.Replace(" ", "")))
                             {
                                 ElementFilter titleBlocksFilter = new ElementCategoryFilter(BuiltInCategory.OST_TitleBlocks);
                                 var titleBlocks = sheet.GetDependentElements(titleBlocksFilter).Select(id => doc.GetElement(id));
@@ -98,7 +101,7 @@ namespace CampusHelperApp.Main
                 }
                 else
                 {
-                    TaskDialog.Show("Message", $"Were no changes!!!\n Count sheets with changes = {counter}");
+                    TaskDialog.Show("Message", $"Were changed sheets!!!\n Count sheets with changes = {counter}");
                 }
 
             }
@@ -112,13 +115,18 @@ namespace CampusHelperApp.Main
         void SetParTitleBlock(Element titleBlock, string corpusName, out bool isSet)
         {
             isSet = false;
+            if (!corpusName.Contains(" "))
+            {
+                corpusName = corpusName.Insert(3, " ");
+            }
+
             if (blockParameters.TryGetValue(corpusName, out string parameterName))
             {
                 Parameter partParameter = titleBlock.LookupParameter(parameterName);
 
                 if (partParameter != null)
                 {
-                    SetPartParameterValues(titleBlock, partParameter, parameterName, out int counter);
+                    SetPartParameterValues(titleBlock, partParameter, out int counter);
                     if(counter > 0)
                     {
                         isSet = true;
@@ -129,18 +137,19 @@ namespace CampusHelperApp.Main
 
 
         // Метод для установки значений параметров блока
-        void SetPartParameterValues(Element titleBlock, Parameter partParameter, string parameterName, out int counter)
+        void SetPartParameterValues(Element titleBlock, Parameter partParameter, out int counter)
         {
+            string parameterName = partParameter.Definition.Name;
             counter = 0;
             foreach (var partParameterName in partParameterNames)
             {
-                if (partParameterName != parameterName)
+                if (partParameterName != parameterName )
                 {
                     if(titleBlock.LookupParameter(parameterName).AsInteger()!=0)
                     {
-                        titleBlock.LookupParameter(partParameterName)?.Set(0);
                         counter++;
                     }
+                    titleBlock.LookupParameter(partParameterName)?.Set(0);
                 }
             }
 
