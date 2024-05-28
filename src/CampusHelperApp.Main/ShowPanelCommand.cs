@@ -173,7 +173,10 @@ namespace CampusHelperApp.Main
 
                 string SymbolPrecastName = SymbolFamilyMark + SymbolMarkNumber;
 
-                if (InstancePrecastName != SymbolPrecastName)
+                string SymbolTypeGeneral = panelSymbol?.LookupParameter("S_TYPE_GENERAL")?.AsString();
+                string SymbolTypeGeneralRoof = "KR";
+
+                if (InstancePrecastName != SymbolPrecastName && SymbolTypeGeneral != SymbolTypeGeneralRoof)
                 {
                     wrongPanels.Add(panel);
                 }
