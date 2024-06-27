@@ -38,13 +38,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Icons\ComMarkChecker.png" />
     <None Remove="Resources\Icons\MarkPanel.png" />
     <None Remove="Resources\Icons\PartForSheet.png" />
+    <None Remove="Resources\Icons\SetComMark.png" />
     <None Remove="Resources\Icons\ShowWrongPanel.png" />
     <None Remove="Resources\testCommand.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Icons\ComMarkChecker.png" />
+    <EmbeddedResource Include="Resources\Icons\SetComMark.png" />
     <EmbeddedResource Include="Resources\Icons\testCommand.png" />
   </ItemGroup>
 

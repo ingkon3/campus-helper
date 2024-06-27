@@ -99,6 +99,18 @@ namespace CampusHelperApp.Main
                     Tooltip  = Resources.ThirdButtonTooltip,
                     IconName = "Resources.Icons.PartForSheet.png",
                 },
+                new RibbonHelper.RibbonButton<PanelSetComMarkCommand>
+                {
+                    Text     = Resources.FourthButtonName,
+                    Tooltip  = Resources.FourthButtonTooltip,
+                    IconName = "Resources.Icons.SetComMark.png",
+                },
+                new RibbonHelper.RibbonButton<PanelComMarkCheckerCommand>
+                {
+                    Text     = Resources.FifthButtonName,
+                    Tooltip  = Resources.FifthButtonToolTip,
+                    IconName = "Resources.Icons.ComMarkChecker.png",
+                },
             };
 
             RibbonHelper.AddButtons(_uiControlledApplication,

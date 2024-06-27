@@ -117,6 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FifthButtonName" xml:space="preserve">
+    <value>ComMark
+Checker</value>
+  </data>
+  <data name="FifthButtonToolTip" xml:space="preserve">
+    <value>For visualize panels if parameter Comment or Mark is wrong</value>
+  </data>
+  <data name="FourthButtonName" xml:space="preserve">
+    <value>Panel
+ComMarker</value>
+  </data>
+  <data name="FourthButtonTooltip" xml:space="preserve">
+    <value>For set parameter Comment and Mark</value>
+  </data>
   <data name="MainButtonName" xml:space="preserve">
     <value>Panel
 Marker</value>
@@ -135,7 +149,7 @@ Marker</value>
 WrongPanel</value>
   </data>
   <data name="SecondButtonTooltip" xml:space="preserve">
-    <value>For visualize panils if parameter S_Precast_Name is wrong</value>
+    <value>For visualize panels if parameter S_Precast_Name is wrong</value>
   </data>
   <data name="ThirdButtonName" xml:space="preserve">
     <value>CheckPart

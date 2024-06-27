@@ -110,6 +110,36 @@ namespace CampusHelperApp.Main {
         }
 
 
+        internal static string FourthButtonName
+        {
+            get
+            {
+                return ResourceManager.GetString("FourthButtonName", resourceCulture);
+            }
+        }
+        internal static string FourthButtonTooltip
+        {
+            get
+            {
+                return ResourceManager.GetString("FourthButtonTooltip", resourceCulture);
+            }
+        }
+
+        internal static string FifthButtonName
+        {
+            get
+            {
+                return ResourceManager.GetString("FifthButtonName", resourceCulture);
+            }
+        }
+        internal static string FifthButtonToolTip
+        {
+            get
+            {
+                return ResourceManager.GetString("FifthButtonToolTip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Ribbon Panel.
         /// </summary>

@@ -35,7 +35,7 @@ namespace CampusHelperApp.Main
             {
                 uiApp.CreateRibbonTab(ribbonTabName);
             }
-            catch (Exception ex)
+            catch (Autodesk.Revit.Exceptions.ArgumentException)
             {
                 //Ignored, if ribbon tab already exist
             }
