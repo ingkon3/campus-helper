@@ -151,6 +151,13 @@ WrongPanel</value>
   <data name="SecondButtonTooltip" xml:space="preserve">
     <value>For visualize panels if parameter S_Precast_Name is wrong</value>
   </data>
+  <data name="SixthButtonName" xml:space="preserve">
+    <value>Panel
+TagMaker</value>
+  </data>
+  <data name="SixthButtonToolTip" xml:space="preserve">
+    <value>For create tags for panels on assemblies</value>
+  </data>
   <data name="ThirdButtonName" xml:space="preserve">
     <value>CheckPart
 ForSheet</value>

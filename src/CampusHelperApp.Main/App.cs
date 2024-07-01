@@ -111,6 +111,12 @@ namespace CampusHelperApp.Main
                     Tooltip  = Resources.FifthButtonToolTip,
                     IconName = "Resources.Icons.ComMarkChecker.png",
                 },
+                new RibbonHelper.RibbonButton<PanelTagMakerCommand>
+                {
+                    Text     = Resources.SixthButtonName,
+                    Tooltip  = Resources.SixthButtonToolTip,
+                    IconName = "Resources.Icons.PanelTagMaker.png",
+                },
             };
 
             RibbonHelper.AddButtons(_uiControlledApplication,
