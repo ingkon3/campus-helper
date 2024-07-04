@@ -115,7 +115,7 @@ namespace CampusHelperApp.Main
                 {
                     Text     = Resources.SixthButtonName,
                     Tooltip  = Resources.SixthButtonToolTip,
-                    IconName = "Resources.Icons.PanelTagMaker_32.png",
+                    IconName = "Resources.Icons.PanelTagMaker.png",
                 },
             };
 
